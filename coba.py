@@ -1,6 +1,5 @@
 import streamlit as st
-import numpy as np
-import pandas as pd
+import math
 
 # Konfigurasi halaman
 st.set_page_config(
@@ -54,7 +53,7 @@ with tab1:
     with col2:
         operator = st.selectbox(
             "Pilih operator",
-            ("+", "-", "×", "÷", "^"),
+            ("+", "-", "×", "÷", "^", "√"),
             key="operator"
         )
     
@@ -75,6 +74,11 @@ with tab1:
                 result = "Error: Pembagian dengan nol"
         elif operator == "^":
             result = num1 ** num2
+        elif operator == "√":
+            if num1 >= 0:
+                result = num1 ** (1/num2)
+            else:
+                result = "Error: Akar dari bilangan negatif"
         
         st.success(f"Hasil: **{result}**")
     st.markdown('</div>', unsafe_allow_html=True)
